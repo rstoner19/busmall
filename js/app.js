@@ -4,7 +4,7 @@ var imageLabel = [];
 for (var i =0; i< imageNames.length; i++){
   imageLabel[i] = imageNames[i].substr(0, imageNames[i].indexOf('.'));
 }
-var count = 0;
+var count = -1;
 var allProducts = [];
 function imageData(name, imageAmount){
   this.imageName = name;
@@ -39,7 +39,6 @@ function randomImage(names, idTag){
 }
 
 function uniqueImage(){
-  count += 1;
   var imageOne = randomImage(imageNames, 'imageOne');
   var imageTwo = randomImage(imageNames, 'imageTwo');
   var imageThree = randomImage(imageNames, 'imageThree');
@@ -55,6 +54,8 @@ function uniqueImage(){
     containerEl.removeChild(image);
     imageThree = randomImage(imageNames, 'imageThree');
   }
+  count += 1;
+  console.log(count);
   allProducts[imageOne].presented += 1;
   allProducts[imageTwo].presented += 1;
   allProducts[imageThree].presented += 1;
@@ -94,15 +95,13 @@ function clickOnFirst(){
 }
 function clickOnSecond(){
   allProducts[displayedImages[1]].clicks += 1;
-  displayedImages = uniqueImage();
   clearImages();
-  uniqueImage();
+  displayedImages = uniqueImage();
   newEventSet();
 }
 function clickOnThird(){
   allProducts[displayedImages[2]].clicks += 1;
-  displayedImages = uniqueImage();
   clearImages();
-  uniqueImage();
+  displayedImages = uniqueImage();
   newEventSet();
 }
