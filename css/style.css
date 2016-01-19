@@ -1,3 +1,35 @@
+header {
+  display: inline;
+  justify-content: center;
+}
+h1 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 30px;
+  margin-bottom: 15px;
+  font-family: "Arial Black";
+  font-style: normal;
+  font-weight: 400;
+  border: solid lightblue 4px;
+  /*-moz-border-radius: 100px / 50px;
+   -webkit-border-radius: 100px / 178px;*/
+   border-radius: 100px / 8px;
+   height: 60px;
+   background-color: #F0F8FF;
+   background-image: -webkit-linear-gradient(#F0F8FF,#00FFFF);
+}
+.logo {
+  position: absolute;
+  margin-top: 12px;
+  margin-left: 7.5%;
+  height: 50px;
+  width: 50px;
+
+}
+section {
+  margin-top: 25px;
+}
 img {
   height: 150px;
   width: 150px;
@@ -5,5 +37,16 @@ img {
 #images{
   display: flex;
   justify-content: space-around;
-
+}
+#imageOne {
+  cursor: pointer;
+}
+#imageTwo {
+  cursor: pointer;
+}
+#imageThree {
+  cursor: pointer;
+}
+.text {
+  margin-left: 10%;
 }
