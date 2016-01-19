@@ -4,7 +4,7 @@ var imageLabel = [];
 for (var i =0; i< imageNames.length; i++){
   imageLabel[i] = imageNames[i].substr(0, imageNames[i].indexOf('.'));
 }
-
+var count = 0;
 var allProducts = [];
 function imageData(name, imageAmount){
   this.imageName = name;
@@ -39,6 +39,7 @@ function randomImage(names, idTag){
 }
 
 function uniqueImage(){
+  count += 1;
   var imageOne = randomImage(imageNames, 'imageOne');
   var imageTwo = randomImage(imageNames, 'imageTwo');
   var imageThree = randomImage(imageNames, 'imageThree');
@@ -69,6 +70,14 @@ function newEventSet(){
   imageOne.addEventListener('click', clickOnFirst);
   imageTwo.addEventListener('click', clickOnSecond);
   imageThree.addEventListener('click', clickOnThird);
+  if(count === 15){
+    for(var i=0;i < allProducts.length; i++){
+      var results = document.getElementById('results');
+      var resultEl = document.createElement('p');
+      resultEl.textContent = allProducts[i].imageName + ' was presented: ' + allProducts[i].presented + ' times. Clicked ' + allProducts[i].clicks + ' times.';
+      results.appendChild(resultEl);
+    }
+  }
 }
 
 function clearImages(){
