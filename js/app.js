@@ -1,9 +1,5 @@
 'use strict'
 var imageNames = ['bag.jpg','banana.jpg','boots.jpg','chair.jpg','cthulhu.jpg','dragon.jpg','pen.jpg','scissors.jpg','shark.jpg','sweep.png','unicorn.jpg','usb.gif','water-can.jpg','wine-glass.jpg'];
-var imageLabel = [];
-for (var i =0; i< imageNames.length; i++){
-  imageLabel[i] = imageNames[i].substr(0, imageNames[i].indexOf('.'));
-}
 var count = -1;
 var allProducts = [];
 function imageData(name, imageAmount){
@@ -23,10 +19,10 @@ var pen = new imageData('Pen Utencils', 'pen.jpg');
 var scissors = new imageData('Pizza Cutter', 'scissors.jpg');
 var shark = new imageData('Shark Sleeping Bag', 'shark.jpg');
 var sweep = new imageData('Baby Cleaner', 'sweep.png');
-var unicorn = new imageData('Unicorn Ji... Meat', 'unicorn.png');
+var unicorn = new imageData('Unicorn Meat', 'unicorn.png');
 var usb = new imageData('USB Tail', 'usb.gif');
 var water = new imageData('Never Ended Waterer', 'water-can.jpg');
-var wine = new imageData('Das Boot for Wine', 'wine-glass.jpg');
+var wine = new imageData('Wine Glass', 'wine-glass.jpg');
 
 function randomImage(names, idTag){
   var imageNumber = Math.floor(Math.random() * names.length);
@@ -55,7 +51,6 @@ function uniqueImage(){
     imageThree = randomImage(imageNames, 'imageThree');
   }
   count += 1;
-  console.log(count);
   allProducts[imageOne].presented += 1;
   allProducts[imageTwo].presented += 1;
   allProducts[imageThree].presented += 1;
