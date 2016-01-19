@@ -8,7 +8,7 @@
  - As a developer, I want to make sure images are presented in a random manner.
  - As a developer, I want to make sure images are presented in the same way in order not to create a selection bias.
  - As a developer, I want to make use of functions and objects to make it efficient and limit DRY
- - As a developer, I want to keep track of user preferences and how many times images are dispalyed
+ - As a developer, I want to keep track of user preferences and how many times images are displayed
  - As a developer, I want to ensure users input 15 points of data is hidden to the user till they click at least 15 times.
 
  - As a market researcher, I want to products to be represented in a fair and equal name.
