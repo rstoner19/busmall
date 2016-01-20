@@ -1,35 +1,29 @@
 'use strict'
 var totalClicks = -1;
-var allProducts = [];
 function imageData(name, imageAmount){
   this.imageName = name;
   this.imageLocation = imageAmount;
   this.clicks = 0;
   this.presented = 0;
-  allProducts.push(this);
 }
-var bag = new imageData('R2D2 Bag', 'bag.jpg');
-var banana = new imageData('Banana Slicer', 'banana.jpg');
-var boots = new imageData('Toeless Boots', 'boots.jpg');
-var chair = new imageData('"Comfy" Chair', 'chair.jpg');
-var cthulhu = new imageData('Cthulhu', 'cthulhu.jpg');
-var dragon = new imageData('Dragon Meat', 'dragon.jpg');
-var pen = new imageData('Pen Utencils', 'pen.jpg');
-var scissors = new imageData('Pizza Cutter', 'scissors.jpg');
-var shark = new imageData('Shark Sleeping Bag', 'shark.jpg');
-var sweep = new imageData('Baby Cleaner', 'sweep.png');
-var unicorn = new imageData('Unicorn Meat', 'unicorn.jpg');
-var usb = new imageData('USB Tail', 'usb.gif');
-var water = new imageData('Never Ended Waterer', 'water-can.jpg');
-var wine = new imageData('Wine Glass', 'wine-glass.jpg');
+var allProducts = [ new imageData('R2D2 Bag', 'bag.jpg'),
+            new imageData('Banana Slicer', 'banana.jpg'),
+            new imageData('Toeless Boots', 'boots.jpg'),
+            new imageData('"Comfy" Chair', 'chair.jpg'),
+            new imageData('Cthulhu', 'cthulhu.jpg'),
+            new imageData('Dragon Meat', 'dragon.jpg'),
+            new imageData('Pen Utencils', 'pen.jpg'),
+            new imageData('Pizza Cutter', 'scissors.jpg'),
+            new imageData('Shark Sleeping Bag', 'shark.jpg'),
+            new imageData('Baby Cleaner', 'sweep.png'),
+            new imageData('Unicorn Meat', 'unicorn.jpg'),
+            new imageData('USB Tail', 'usb.gif'),
+            new imageData('Never Ended Waterer', 'water-can.jpg'),
+            new imageData('Wine Glass', 'wine-glass.jpg')];
 
-function randomImage(names, idTag){
+function randomImage(names,idTag){
   var imageNumber = Math.floor(Math.random() * names.length);
-  var image = document.getElementById('images')
-  var imgEl = document.createElement('img');
-  imgEl.setAttribute('id', idTag);
-  imgEl.src = 'img/' + allProducts[imageNumber].imageLocation;
-  image.appendChild(imgEl);
+  document.getElementById(idTag).src = 'img/' + allProducts[imageNumber].imageLocation;
   return imageNumber;
 }
 
@@ -38,15 +32,9 @@ function uniqueImage(){
   var imageTwo = randomImage(allProducts, 'imageTwo');
   var imageThree = randomImage(allProducts, 'imageThree');
   while(imageOne === imageTwo){
-    var image = document.getElementById('imageTwo');
-    var containerEl = image.parentNode;
-    containerEl.removeChild(image);
     imageTwo = randomImage(allProducts, 'imageTwo');
   }
   while(imageOne === imageThree || imageTwo === imageThree ){
-    var image = document.getElementById('imageThree');
-    var containerEl = image.parentNode;
-    containerEl.removeChild(image);
     imageThree = randomImage(allProducts, 'imageThree');
   }
   totalClicks += 1;
@@ -69,34 +57,24 @@ function newEventSet(){
     var button = document.getElementById("graphResults");
     var buttonEl = document.createElement('button');
     buttonEl.setAttribute('id', 'submitResults');
-    buttonEl.textContent = 'Show Resutls';
+    buttonEl.textContent = 'Show Results';
     button.appendChild(buttonEl);
     var showResults = document.getElementById('submitResults')
     showResults.addEventListener('click', drawChart);
   }
 }
 
-function clearImages(){
-  var image = document.getElementById('images');
-  while(image.firstChild){
-    image.removeChild(image.firstChild);
-  }
-}
 function clickOnFirst(){
-  allProducts[displayedImages[0]].clicks += 1;
-  clearImages();
-  displayedImages = uniqueImage();
-  newEventSet();
+  afterClick(0)
 }
 function clickOnSecond(){
-  allProducts[displayedImages[1]].clicks += 1;
-  clearImages();
-  displayedImages = uniqueImage();
-  newEventSet();
+  afterClick(1)
 }
 function clickOnThird(){
-  allProducts[displayedImages[2]].clicks += 1;
-  clearImages();
+  afterClick(2)
+}
+function afterClick(number){
+  allProducts[displayedImages[number]].clicks += 1;
   displayedImages = uniqueImage();
   newEventSet();
 }
