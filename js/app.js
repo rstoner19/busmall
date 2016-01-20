@@ -1,5 +1,4 @@
 'use strict'
-var imageNames = ['bag.jpg','banana.jpg','boots.jpg','chair.jpg','cthulhu.jpg','dragon.jpg','pen.jpg','scissors.jpg','shark.jpg','sweep.png','unicorn.jpg','usb.gif','water-can.jpg','wine-glass.jpg'];
 var totalClicks = -1;
 var allProducts = [];
 function imageData(name, imageAmount){
@@ -19,7 +18,7 @@ var pen = new imageData('Pen Utencils', 'pen.jpg');
 var scissors = new imageData('Pizza Cutter', 'scissors.jpg');
 var shark = new imageData('Shark Sleeping Bag', 'shark.jpg');
 var sweep = new imageData('Baby Cleaner', 'sweep.png');
-var unicorn = new imageData('Unicorn Meat', 'unicorn.png');
+var unicorn = new imageData('Unicorn Meat', 'unicorn.jpg');
 var usb = new imageData('USB Tail', 'usb.gif');
 var water = new imageData('Never Ended Waterer', 'water-can.jpg');
 var wine = new imageData('Wine Glass', 'wine-glass.jpg');
@@ -29,26 +28,26 @@ function randomImage(names, idTag){
   var image = document.getElementById('images')
   var imgEl = document.createElement('img');
   imgEl.setAttribute('id', idTag);
-  imgEl.src = 'img/' + names[imageNumber];
+  imgEl.src = 'img/' + allProducts[imageNumber].imageLocation;
   image.appendChild(imgEl);
   return imageNumber;
 }
 
 function uniqueImage(){
-  var imageOne = randomImage(imageNames, 'imageOne');
-  var imageTwo = randomImage(imageNames, 'imageTwo');
-  var imageThree = randomImage(imageNames, 'imageThree');
+  var imageOne = randomImage(allProducts, 'imageOne');
+  var imageTwo = randomImage(allProducts, 'imageTwo');
+  var imageThree = randomImage(allProducts, 'imageThree');
   while(imageOne === imageTwo){
     var image = document.getElementById('imageTwo');
     var containerEl = image.parentNode;
     containerEl.removeChild(image);
-    imageTwo = randomImage(imageNames, 'imageTwo');
+    imageTwo = randomImage(allProducts, 'imageTwo');
   }
   while(imageOne === imageThree || imageTwo === imageThree ){
     var image = document.getElementById('imageThree');
     var containerEl = image.parentNode;
     containerEl.removeChild(image);
-    imageThree = randomImage(imageNames, 'imageThree');
+    imageThree = randomImage(allProducts, 'imageThree');
   }
   totalClicks += 1;
   allProducts[imageOne].presented += 1;
@@ -118,7 +117,7 @@ function drawChart(){
               label: "Selections",
               fillColor: "rgba(114,245,156,0.75)",
               strokeColor: "rgba(220,220,220,0.8)",
-              highlightFill: "rgba(114,245,156,0.25)",
+              highlightFill: "rgba(114,245,156,0.5)",
               highlightStroke: "rgba(220,220,220,1)",
               data: selections
           },
@@ -126,7 +125,7 @@ function drawChart(){
               label: "Displayed",
               fillColor: "rgba(235,246,252,0.75)",
               strokeColor: "rgba(151,187,205,0.8)",
-              highlightFill: "rgba(1235,246,252,0.25)",
+              highlightFill: "rgba(1235,246,252,0.5)",
               highlightStroke: "rgba(151,187,205,1)",
               data: userDisplayed
           }
@@ -134,4 +133,5 @@ function drawChart(){
   };
   var ctx = document.getElementById("results").getContext("2d");
   var myBarChart = new Chart(ctx).Bar(data);
+  myBarChart.update();
 }
