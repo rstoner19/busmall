@@ -115,5 +115,4 @@ function drawChart(){
   };
     var ctx = document.getElementById("results").getContext("2d");
     var myBarChart = new Chart(ctx).Bar(data);
-    console.log(myBarChart);
 }
