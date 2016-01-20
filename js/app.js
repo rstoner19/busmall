@@ -1,10 +1,6 @@
 'use strict'
 var imageNames = ['bag.jpg','banana.jpg','boots.jpg','chair.jpg','cthulhu.jpg','dragon.jpg','pen.jpg','scissors.jpg','shark.jpg','sweep.png','unicorn.jpg','usb.gif','water-can.jpg','wine-glass.jpg'];
-var imageLabel = [];
-for (var i =0; i< imageNames.length; i++){
-  imageLabel[i] = imageNames[i].substr(0, imageNames[i].indexOf('.'));
-}
-var count = -1;
+var totalClicks = -1;
 var allProducts = [];
 function imageData(name, imageAmount){
   this.imageName = name;
@@ -23,10 +19,10 @@ var pen = new imageData('Pen Utencils', 'pen.jpg');
 var scissors = new imageData('Pizza Cutter', 'scissors.jpg');
 var shark = new imageData('Shark Sleeping Bag', 'shark.jpg');
 var sweep = new imageData('Baby Cleaner', 'sweep.png');
-var unicorn = new imageData('Unicorn Ji... Meat', 'unicorn.png');
+var unicorn = new imageData('Unicorn Meat', 'unicorn.png');
 var usb = new imageData('USB Tail', 'usb.gif');
 var water = new imageData('Never Ended Waterer', 'water-can.jpg');
-var wine = new imageData('Das Boot for Wine', 'wine-glass.jpg');
+var wine = new imageData('Wine Glass', 'wine-glass.jpg');
 
 function randomImage(names, idTag){
   var imageNumber = Math.floor(Math.random() * names.length);
@@ -54,8 +50,7 @@ function uniqueImage(){
     containerEl.removeChild(image);
     imageThree = randomImage(imageNames, 'imageThree');
   }
-  count += 1;
-  console.log(count);
+  totalClicks += 1;
   allProducts[imageOne].presented += 1;
   allProducts[imageTwo].presented += 1;
   allProducts[imageThree].presented += 1;
@@ -71,13 +66,14 @@ function newEventSet(){
   imageOne.addEventListener('click', clickOnFirst);
   imageTwo.addEventListener('click', clickOnSecond);
   imageThree.addEventListener('click', clickOnThird);
-  if(count === 15){
-    for(var i=0;i < allProducts.length; i++){
-      var results = document.getElementById('results');
-      var resultEl = document.createElement('p');
-      resultEl.textContent = allProducts[i].imageName + ' was presented: ' + allProducts[i].presented + ' times. Clicked ' + allProducts[i].clicks + ' times.';
-      results.appendChild(resultEl);
-    }
+  if(totalClicks === 15){
+    var button = document.getElementById("graphResults");
+    var buttonEl = document.createElement('button');
+    buttonEl.setAttribute('id', 'submitResults');
+    buttonEl.textContent = 'Show Resutls';
+    button.appendChild(buttonEl);
+    var showResults = document.getElementById('submitResults')
+    showResults.addEventListener('click', drawChart);
   }
 }
 
@@ -104,4 +100,38 @@ function clickOnThird(){
   clearImages();
   displayedImages = uniqueImage();
   newEventSet();
+}
+
+function drawChart(){
+  var imageLabels = [];
+  var selections = [];
+  var userDisplayed = [];
+  for(var i=0; i < allProducts.length; i++){
+    imageLabels.push(allProducts[i].imageName);
+    selections.push(allProducts[i].clicks);
+    userDisplayed.push(allProducts[i].presented);
+  }
+  var data = {
+      labels: imageLabels,
+      datasets: [
+          {
+              label: "Selections",
+              fillColor: "rgba(114,245,156,0.75)",
+              strokeColor: "rgba(220,220,220,0.8)",
+              highlightFill: "rgba(114,245,156,0.25)",
+              highlightStroke: "rgba(220,220,220,1)",
+              data: selections
+          },
+          {
+              label: "Displayed",
+              fillColor: "rgba(235,246,252,0.75)",
+              strokeColor: "rgba(151,187,205,0.8)",
+              highlightFill: "rgba(1235,246,252,0.25)",
+              highlightStroke: "rgba(151,187,205,1)",
+              data: userDisplayed
+          }
+      ]
+  };
+  var ctx = document.getElementById("results").getContext("2d");
+  var myBarChart = new Chart(ctx).Bar(data);
 }
