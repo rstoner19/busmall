@@ -1,5 +1,6 @@
 'use strict'
 var totalClicks = -1;
+var ran = 'no';
 function imageData(name, imageAmount){
   this.imageName = name;
   this.imageLocation = imageAmount;
@@ -53,7 +54,7 @@ function newEventSet(){
   imageOne.addEventListener('click', clickOnFirst);
   imageTwo.addEventListener('click', clickOnSecond);
   imageThree.addEventListener('click', clickOnThird);
-  if(totalClicks >= 15){
+  if(totalClicks >= 5 && allPresented() === true && ran === 'no'){
     var button = document.getElementById("graphResults");
     var buttonEl = document.createElement('button');
     buttonEl.setAttribute('id', 'submitResults');
@@ -61,7 +62,16 @@ function newEventSet(){
     button.appendChild(buttonEl);
     var showResults = document.getElementById('submitResults')
     showResults.addEventListener('click', drawChart);
+    ran = 'yes';
   }
+}
+function allPresented(){
+  for(var i=0; i < allProducts.length; i++){
+    if(allProducts[i].presented === 0){
+      return false;
+    }
+  }
+  return true;
 }
 
 function clickOnFirst(){
@@ -103,7 +113,7 @@ function drawChart(){
           }
       ]
   };
-  var ctx = document.getElementById("results").getContext("2d");
-  var myBarChart = new Chart(ctx).Bar(data);
-  myBarChart.update();
+    var ctx = document.getElementById("results").getContext("2d");
+    var myBarChart = new Chart(ctx).Bar(data);
+    console.log(myBarChart);
 }
