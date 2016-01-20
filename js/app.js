@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 var totalClicks = -1;
 var ran = 'no';
 function imageData(name, imageAmount){
@@ -7,7 +7,7 @@ function imageData(name, imageAmount){
   this.clicks = 0;
   this.presented = 0;
 }
-var allProducts = [ new imageData('R2D2 Bag', 'bag.jpg'),
+var allProducts = [new imageData('R2D2 Bag', 'bag.jpg'),
             new imageData('Banana Slicer', 'banana.jpg'),
             new imageData('Toeless Boots', 'boots.jpg'),
             new imageData('"Comfy" Chair', 'chair.jpg'),
@@ -55,12 +55,12 @@ function newEventSet(){
   imageTwo.addEventListener('click', clickOnSecond);
   imageThree.addEventListener('click', clickOnThird);
   if(totalClicks >= 5 && allPresented() === true && ran === 'no'){
-    var button = document.getElementById("graphResults");
+    var button = document.getElementById('graphResults');
     var buttonEl = document.createElement('button');
     buttonEl.setAttribute('id', 'submitResults');
     buttonEl.textContent = 'Show Results';
     button.appendChild(buttonEl);
-    var showResults = document.getElementById('submitResults')
+    var showResults = document.getElementById('submitResults');
     showResults.addEventListener('click', drawChart);
     ran = 'yes';
   }
@@ -75,13 +75,13 @@ function allPresented(){
 }
 
 function clickOnFirst(){
-  afterClick(0)
+  afterClick(0);
 }
 function clickOnSecond(){
-  afterClick(1)
+  afterClick(1);
 }
 function clickOnThird(){
-  afterClick(2)
+  afterClick(2);
 }
 function afterClick(number){
   allProducts[displayedImages[number]].clicks += 1;
@@ -99,20 +99,20 @@ function drawChart(){
     userDisplayed.push(allProducts[i].presented);
   }
   var data = {
-      labels: imageLabels,
-      datasets: [
-          {
-              label: "Selections",
-              fillColor: "rgba(114,245,156,0.75)",
-              data: selections
-          },
-          {
-              label: "Displayed",
-              fillColor: "rgba(235,246,252,0.75)",
-              data: userDisplayed
-          }
-      ]
+    labels: imageLabels,
+    datasets: [
+      {
+        label: 'Selections',
+        fillColor: 'rgba(114,245,156,0.75)',
+        data: selections
+      },
+      {
+        label: 'Displayed',
+        fillColor: 'rgba(235,246,252,0.75)',
+        data: userDisplayed
+      }
+    ]
   };
-    var ctx = document.getElementById("results").getContext("2d");
-    var myBarChart = new Chart(ctx).Bar(data);
+  var ctx = document.getElementById('results').getContext('2d');
+  var myBarChart = new Chart(ctx).Bar(data);
 }
