@@ -53,7 +53,7 @@ function newEventSet(){
   imageOne.addEventListener('click', clickOnFirst);
   imageTwo.addEventListener('click', clickOnSecond);
   imageThree.addEventListener('click', clickOnThird);
-  if(allPresented() === true && totalClicks >= 5){
+  if(totalClicks >= 15){
     var button = document.getElementById("graphResults");
     var buttonEl = document.createElement('button');
     buttonEl.setAttribute('id', 'submitResults');
@@ -64,18 +64,6 @@ function newEventSet(){
   }
 }
 
-function allPresented(){
-  for(var i=0; i < allProducts.length; i++){
-    if(allProducts[i].presented > 0){
-    }
-    else{
-      console.log('no');
-      return false;
-    }
-  }
-  console.log('yes');
-  return true;
-}
 function clickOnFirst(){
   afterClick(0)
 }
