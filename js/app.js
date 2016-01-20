@@ -53,7 +53,7 @@ function newEventSet(){
   imageOne.addEventListener('click', clickOnFirst);
   imageTwo.addEventListener('click', clickOnSecond);
   imageThree.addEventListener('click', clickOnThird);
-  if(totalClicks === 15){
+  if(allPresented() === true && totalClicks >= 5){
     var button = document.getElementById("graphResults");
     var buttonEl = document.createElement('button');
     buttonEl.setAttribute('id', 'submitResults');
@@ -64,6 +64,18 @@ function newEventSet(){
   }
 }
 
+function allPresented(){
+  for(var i=0; i < allProducts.length; i++){
+    if(allProducts[i].presented > 0){
+    }
+    else{
+      console.log('no');
+      return false;
+    }
+  }
+  console.log('yes');
+  return true;
+}
 function clickOnFirst(){
   afterClick(0)
 }
@@ -94,17 +106,11 @@ function drawChart(){
           {
               label: "Selections",
               fillColor: "rgba(114,245,156,0.75)",
-              strokeColor: "rgba(220,220,220,0.8)",
-              highlightFill: "rgba(114,245,156,0.5)",
-              highlightStroke: "rgba(220,220,220,1)",
               data: selections
           },
           {
               label: "Displayed",
               fillColor: "rgba(235,246,252,0.75)",
-              strokeColor: "rgba(151,187,205,0.8)",
-              highlightFill: "rgba(1235,246,252,0.5)",
-              highlightStroke: "rgba(151,187,205,1)",
               data: userDisplayed
           }
       ]
