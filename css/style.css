@@ -19,11 +19,11 @@ h1 {
 }
 .logo {
   position: absolute;
-  margin-top: 12px;
+  margin-top: 11px;
   margin-left: 7.5%;
   height: 50px;
   width: 50px;
-
+  border: none;
 }
 section {
   margin-top: 25px;
@@ -31,10 +31,22 @@ section {
 img {
   height: 175px;
   width: 175px;
+  border: solid 2px black;
 }
 #images{
   display: flex;
   justify-content: space-around;
+  background-color: white;
+  background-image: -webkit-linear-gradient(#00FA9A,#F0F8FF);
+  padding-top: 15px;
+  padding-bottom: 15px;
+  margin-bottom: 15px;
+}
+#submitResults{
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  align: top;
 }
 #imageOne {
   cursor: pointer;
@@ -47,4 +59,9 @@ img {
 }
 .text {
   margin-left: 10%;
+}
+#results{
+  display: flex;
+  justify-content: center;
+  margin: auto;
 }
