@@ -10,6 +10,7 @@
  - As a developer, I want to keep track of user preferences and how many times images are displayed
 
  - As a market researcher, I want the products to be represented in a fair and equal manner.
- - As a market researcher, I want to keep track of the user data.
+ - As a market researcher, I want to keep track of the user data even if the browser is closed.
+ - As a market researcher, I want to be able to delete the stored data when I choose.
  - As a market researcher, I want the user data presented in a clear and easy to understand manner.
  - As a market researcher, I want to ensure users input 15 points of data before they have access to view the results to ensure limited bias.
