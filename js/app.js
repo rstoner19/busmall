@@ -54,7 +54,7 @@ function newEventSet(){
   imageOne.addEventListener('click', clickOnFirst);
   imageTwo.addEventListener('click', clickOnSecond);
   imageThree.addEventListener('click', clickOnThird);
-  if(totalClicks >= 5 && allPresented() === true && ran === 'no'){
+  if(totalClicks >= 15 && allPresented() === true && ran === 'no'){
     var button = document.getElementById('graphResults');
     var buttonEl = document.createElement('button');
     buttonEl.setAttribute('id', 'submitResults');
@@ -85,9 +85,18 @@ function clickOnThird(){
 }
 function afterClick(number){
   allProducts[displayedImages[number]].clicks += 1;
+  localStorage.setItem('chartPersist', JSON.stringify(allProducts));
   displayedImages = uniqueImage();
   newEventSet();
 }
+var clearLS = document.getElementById('lsClear');
+
+var handleLSClear = function() {
+  console.log('cleariing Local Storage');
+  localStorage.clear();
+};
+clearLS.addEventListener('click', handleLSClear);
+
 
 function drawChart(){
   var imageLabels = [];
@@ -115,4 +124,13 @@ function drawChart(){
   };
   var ctx = document.getElementById('results').getContext('2d');
   var myBarChart = new Chart(ctx).Bar(data);
+}
+
+
+var chartData = localStorage.getItem('chartPersist');
+if (chartData) {
+  allProducts = JSON.parse(chartData);
+} else {
+  console.log('Local storage empty!! Initializing!');
+  localStorage.setItem('chartPersist', JSON.stringify(allProducts));
 }

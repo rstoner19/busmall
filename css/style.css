@@ -65,3 +65,9 @@ img {
   justify-content: center;
   margin: auto;
 }
+#lsClear{
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  align: top;
+}
